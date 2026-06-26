@@ -31,7 +31,7 @@ export default function Header({ user, userProfile, activePlans, logout }: Heade
           </Link>
           {/* Hide dashboard text on very small screens */}
           <div className="ml-4 sm:ml-6 hidden md:flex space-x-1">
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-blue-600 text-sm">
+            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-rose-600 hover:bg-rose-50 text-sm">
               Dashboard
             </Button>
           </div>
@@ -41,7 +41,7 @@ export default function Header({ user, userProfile, activePlans, logout }: Heade
         <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
           {/* Welcome message - hide on mobile */}
           <div className="hidden md:flex flex-col items-end">
-            <h1 className="text-xs sm:text-sm font-bold bg-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-xs sm:text-sm font-bold text-rose-600">
               Welcome Back, {user?.name}!
             </h1>
           </div>
@@ -70,9 +70,9 @@ export default function Header({ user, userProfile, activePlans, logout }: Heade
 
           {/* User avatar and name */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Avatar className="h-7 w-7 sm:h-8 sm:w-8 ring-1 sm:ring-2 ring-blue-100">
+            <Avatar className="h-7 w-7 sm:h-8 sm:w-8 ring-1 sm:ring-2 ring-rose-100">
               <AvatarImage src={userProfile?.profile_photo || "/placeholder.svg"} />
-              <AvatarFallback className="text-xs sm:text-sm bg-blue-100 text-blue-600">
+              <AvatarFallback className="text-xs sm:text-sm bg-rose-100 text-rose-600">
                 {user?.name?.charAt(0)}
               </AvatarFallback>
             </Avatar>

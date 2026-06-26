@@ -190,7 +190,7 @@ export default function PlansPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
-                  <Phone className="w-8 h-8 text-blue-500" />
+                  <Phone className="w-8 h-8 text-rose-500" />
                   Call Plans
                 </h2>
                 <p className="text-lg text-gray-600">Add-on plans to make voice calls with your matches</p>
@@ -201,12 +201,12 @@ export default function PlansPage() {
                   <div
                     key={plan.id}
                     className={`relative bg-white rounded-2xl shadow-lg p-8 border ${
-                      plan.popular ? "ring-2 ring-blue-600 scale-105 border-blue-200" : "border-gray-200"
+                      plan.popular ? "ring-2 ring-rose-600 scale-105 border-rose-200" : "border-gray-200"
                     }`}
                   >
                     {plan.popular && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <div className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium flex items-center">
+                        <div className="bg-rose-600 text-white px-4 py-1 rounded-full text-sm font-medium flex items-center">
                           <Star className="w-4 h-4 mr-1" />
                           Best Value
                         </div>
@@ -215,10 +215,10 @@ export default function PlansPage() {
 
                     <div className="text-center mb-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                      <div className="text-4xl font-bold text-blue-600 mb-1">
+                      <div className="text-4xl font-bold text-rose-600 mb-1">
                         ₹{Number(plan.price).toFixed(2)}
                       </div>
-                      <div className="text-lg font-semibold text-blue-500 mb-2">
+                      <div className="text-lg font-semibold text-rose-500 mb-2">
                         {plan.call_credits} Minutes
                       </div>
                       <div className="text-gray-600">
@@ -246,7 +246,7 @@ export default function PlansPage() {
                       onClick={() => handleChoosePlan(plan.id)}
                       className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
                         plan.popular
-                          ? "bg-blue-600 text-white hover:bg-blue-700"
+                          ? "bg-rose-600 text-white hover:bg-rose-700"
                           : "bg-gray-100 text-gray-900 hover:bg-gray-200"
                       }`}
                     >

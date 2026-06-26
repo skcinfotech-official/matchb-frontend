@@ -15,12 +15,12 @@ export default function UpgradeModal({ open, onOpenChange, onViewPlans }: Upgrad
       <DialogContent className="max-w-md p-6">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-center flex items-center justify-center">
-            <Zap className="h-5 w-5 mr-2 text-yellow-500" />
+            <Zap className="h-5 w-5 mr-2 text-amber-500" />
             Upgrade Required
           </DialogTitle>
         </DialogHeader>
         <div className="text-center space-y-4">
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-6">
+          <div className="bg-amber-50 rounded-lg p-6">
             <Crown className="h-12 w-12 text-yellow-500 mx-auto mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Premium Feature</h3>
             <p className="text-sm text-gray-600">
@@ -29,7 +29,7 @@ export default function UpgradeModal({ open, onOpenChange, onViewPlans }: Upgrad
           </div>
           <div className="space-y-2">
             <Button
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="w-full bg-rose-600 hover:bg-rose-700"
               onClick={onViewPlans}
             >
               <Sparkles className="h-4 w-4 mr-2" />

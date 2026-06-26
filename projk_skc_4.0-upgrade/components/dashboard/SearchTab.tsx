@@ -69,23 +69,23 @@ export default function SearchTab({
   ];
 
   return (
-    <Card className="border-0 shadow-xl bg-white/95 backdrop-blur-sm">
+    <Card className="border border-rose-100 shadow-sm">
       <CardContent className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsContent value="search" className="mt-0">
             {/* Important Notice */}
-            <Alert className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
-              <Info className="h-4 w-4 text-blue-600" />
-              <AlertDescription className="text-blue-700 font-medium">
+            <Alert className="mb-6 bg-rose-50 border-rose-200">
+              <Info className="h-4 w-4 text-rose-600" />
+              <AlertDescription className="text-rose-700 font-medium">
                 <strong>Required:</strong> Please select both State and Gender to see available profile count
               </AlertDescription>
             </Alert>
 
             {/* Search filters section */}
-            <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-2xl p-6 mb-8 border border-slate-200">
+            <div className="bg-rose-50/50 rounded-xl p-6 mb-8 border border-rose-100">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                 <div className="flex items-center">
-                  <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg p-2 mr-3">
+                  <div className="bg-rose-600 rounded-lg p-2 mr-3">
                     <Filter className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -118,7 +118,7 @@ export default function SearchTab({
                     value={searchFilters.location}
                     onValueChange={(v) => handleSearchFilterChange("location", v)}
                   >
-                    <SelectTrigger className="h-11 bg-white border-slate-300 focus:border-blue-500 ring-2 ring-blue-100">
+                    <SelectTrigger className="h-11 bg-white border-slate-300 focus:border-rose-500 ring-2 ring-rose-100">
                       <SelectValue placeholder="Select state (Required)" />
                     </SelectTrigger>
                     <SelectContent>
@@ -132,14 +132,14 @@ export default function SearchTab({
                 {/* Gender Filter - REQUIRED */}
                 <div className="space-y-2">
                   <Label className="text-sm font-semibold text-gray-700 flex items-center">
-                    <User className="h-4 w-4 mr-2 text-purple-500" />
+                    <User className="h-4 w-4 mr-2 text-pink-500" />
                     Gender <span className="text-red-500 ml-1">*</span>
                   </Label>
                   <Select
                     value={searchFilters.gender}
                     onValueChange={(v) => handleSearchFilterChange("gender", v)}
                   >
-                    <SelectTrigger className="h-11 bg-white border-slate-300 focus:border-blue-500 ring-2 ring-blue-100">
+                    <SelectTrigger className="h-11 bg-white border-slate-300 focus:border-rose-500 ring-2 ring-rose-100">
                       <SelectValue placeholder="Select gender (Required)" />
                     </SelectTrigger>
                     <SelectContent>
@@ -152,7 +152,7 @@ export default function SearchTab({
                 {/* Age Range */}
                 <div className="space-y-2">
                   <Label className="text-sm font-semibold text-gray-700 flex items-center">
-                    <Calendar className="h-4 w-4 mr-2 text-blue-500" />
+                    <Calendar className="h-4 w-4 mr-2 text-rose-500" />
                     Age Range (Optional)
                   </Label>
                   <div className="grid grid-cols-2 gap-3">
@@ -161,14 +161,14 @@ export default function SearchTab({
                       placeholder="Min"
                       value={searchFilters.ageMin}
                       onChange={(e) => handleSearchFilterChange("ageMin", e.target.value)}
-                      className="h-11 bg-white border-slate-300 focus:border-blue-500"
+                      className="h-11 bg-white border-slate-300 focus:border-rose-500"
                     />
                     <Input
                       type="number"
                       placeholder="Max"
                       value={searchFilters.ageMax}
                       onChange={(e) => handleSearchFilterChange("ageMax", e.target.value)}
-                      className="h-11 bg-white border-slate-300 focus:border-blue-500"
+                      className="h-11 bg-white border-slate-300 focus:border-rose-500"
                     />
                   </div>
                 </div>
@@ -176,14 +176,14 @@ export default function SearchTab({
                 {/* Religion Filter */}
                 <div className="space-y-2">
                   <Label className="text-sm font-semibold text-gray-700 flex items-center">
-                    <Sparkles className="h-4 w-4 mr-2 text-indigo-500" />
+                    <Sparkles className="h-4 w-4 mr-2 text-pink-500" />
                     Religion (Optional)
                   </Label>
                   <Select
                     value={searchFilters.religion}
                     onValueChange={(v) => handleSearchFilterChange("religion", v)}
                   >
-                    <SelectTrigger className="h-11 bg-white border-slate-300 focus:border-blue-500">
+                    <SelectTrigger className="h-11 bg-white border-slate-300 focus:border-rose-500">
                       <SelectValue placeholder="Any religion" />
                     </SelectTrigger>
                     <SelectContent>
@@ -208,7 +208,7 @@ export default function SearchTab({
                     placeholder="e.g. MBA, B.Tech"
                     value={searchFilters.education}
                     onChange={(e) => handleSearchFilterChange("education", e.target.value)}
-                    className="h-11 bg-white border-slate-300 focus:border-blue-500"
+                    className="h-11 bg-white border-slate-300 focus:border-rose-500"
                   />
                 </div>
 
@@ -222,7 +222,7 @@ export default function SearchTab({
                     placeholder="e.g. Engineer, Doctor"
                     value={searchFilters.occupation}
                     onChange={(e) => handleSearchFilterChange("occupation", e.target.value)}
-                    className="h-11 bg-white border-slate-300 focus:border-blue-500"
+                    className="h-11 bg-white border-slate-300 focus:border-rose-500"
                   />
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function SearchTab({
                 <Button
                   onClick={onSearch}
                   disabled={loadingSearch || !canSearch}
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-semibold px-8 py-3 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 min-w-[200px] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 h-12 rounded-xl shadow-sm transition-colors min-w-[200px] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loadingSearch ? (
                     <>
@@ -259,7 +259,7 @@ export default function SearchTab({
             {searchResult ? (
               <div className="space-y-6">
                 {searchResult.availableCount > 0 ? (
-                  <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 shadow-lg">
+                  <Card className="border border-green-200 bg-green-50 shadow-sm">
                     <CardContent className="p-8 text-center">
                       <div className="flex justify-center mb-4">
                         <div className="bg-green-500 rounded-full p-4">
@@ -272,7 +272,7 @@ export default function SearchTab({
                       <p className="text-lg text-green-700 mb-6">
                         Found {searchResult.availableCount} matching {searchResult.gender} profiles in {searchResult.state}
                       </p>
-                      <div className="bg-white/80 rounded-xl p-6 border border-green-200">
+                      <div className="bg-white rounded-xl p-6 border border-green-200">
                         <div className="flex items-center justify-center gap-3 mb-4">
                           <Users className="h-6 w-6 text-green-600" />
                           <h4 className="text-xl font-semibold text-gray-900">Profile Details Available</h4>
@@ -298,7 +298,7 @@ export default function SearchTab({
                           onClick={() => {
                             if (onUpgrade) onUpgrade();
                           }}
-                          className="mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-8 py-3 rounded-lg shadow-md"
+                          className="mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg"
                         >
                           View Premium Plans
                         </Button>
@@ -306,7 +306,7 @@ export default function SearchTab({
                     </CardContent>
                   </Card>
                 ) : (
-                  <Card className="border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-50 shadow-lg">
+                  <Card className="border border-amber-200 bg-amber-50 shadow-sm">
                     <CardContent className="p-8 text-center">
                       <div className="flex justify-center mb-4">
                         <div className="bg-amber-500 rounded-full p-4">
@@ -329,27 +329,27 @@ export default function SearchTab({
             ) : (
               /* Empty state */
               <div className="text-center py-16">
-                <div className="bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full p-8 w-32 h-32 mx-auto mb-8 flex items-center justify-center shadow-lg">
-                  <Search className="h-16 w-16 text-indigo-500" />
+                <div className="bg-rose-100 rounded-full p-8 w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+                  <Search className="h-16 w-16 text-pink-500" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Discover Available Profiles</h3>
                 <p className="text-gray-600 mb-8 max-w-lg mx-auto text-lg leading-relaxed">
                   Select a <strong>State</strong> and <strong>Gender</strong> above to check how many verified profiles are available in your area.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                  <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-                    <div className="bg-blue-500 rounded-lg p-3 w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-rose-50 rounded-xl p-6 border border-rose-100">
+                    <div className="bg-rose-500 rounded-lg p-3 w-12 h-12 mx-auto mb-4 flex items-center justify-center">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
-                    <h4 className="font-semibold text-blue-900 mb-2">State-Based</h4>
-                    <p className="text-sm text-blue-700">Find profiles available in your preferred state</p>
+                    <h4 className="font-semibold text-rose-900 mb-2">State-Based</h4>
+                    <p className="text-sm text-rose-700">Find profiles available in your preferred state</p>
                   </div>
-                  <div className="bg-purple-50 rounded-xl p-6 border border-purple-100">
-                    <div className="bg-purple-500 rounded-lg p-3 w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-pink-50 rounded-xl p-6 border border-pink-100">
+                    <div className="bg-pink-500 rounded-lg p-3 w-12 h-12 mx-auto mb-4 flex items-center justify-center">
                       <Users className="h-6 w-6 text-white" />
                     </div>
-                    <h4 className="font-semibold text-purple-900 mb-2">Verified Count</h4>
-                    <p className="text-sm text-purple-700">See exact number of available profiles</p>
+                    <h4 className="font-semibold text-pink-900 mb-2">Verified Count</h4>
+                    <p className="text-sm text-pink-700">See exact number of available profiles</p>
                   </div>
                   <div className="bg-green-50 rounded-xl p-6 border border-green-100">
                     <div className="bg-green-500 rounded-lg p-3 w-12 h-12 mx-auto mb-4 flex items-center justify-center">

@@ -20,11 +20,11 @@ export default function CallStatusModal({
     switch (callStatus) {
       case 'initiating':
         return {
-          icon: <Phone className="h-16 w-16 mx-auto text-blue-500 animate-pulse" />,
+          icon: <Phone className="h-16 w-16 mx-auto text-rose-500 animate-pulse" />,
           title: 'Initiating Call',
           message: `Setting up call to ${targetName}...`,
-          color: 'text-blue-600',
-          bgColor: 'bg-blue-50',
+          color: 'text-rose-600',
+          bgColor: 'bg-rose-50',
           showSpinner: true
         };
       case 'ringing':
@@ -112,7 +112,7 @@ export default function CallStatusModal({
               <div className="relative">
                 {statusInfo.icon}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-20 w-20 border-2 border-blue-500 border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-20 w-20 border-2 border-rose-500 border-t-transparent"></div>
                 </div>
               </div>
             ) : (

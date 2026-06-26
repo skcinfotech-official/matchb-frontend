@@ -1,5 +1,6 @@
 // components/dashboard/QuickActions.tsx
 import { Button } from "@/components/ui/button";
+import { CreditCard } from "lucide-react";
 
 interface QuickActionsProps {
   onViewPlans: () => void;
@@ -7,10 +8,9 @@ interface QuickActionsProps {
 
 export default function QuickActions({ onViewPlans }: QuickActionsProps) {
   return (
-    <div className="space-y-2">
-      <Button onClick={onViewPlans} className="w-full bg-blue-500 hover:bg-blue-600 text-white">
-        View Plans
-      </Button>
-    </div>
+    <Button onClick={onViewPlans} className="w-full bg-rose-600 hover:bg-rose-700 text-white">
+      <CreditCard className="h-4 w-4 mr-2" />
+      View Plans
+    </Button>
   );
 }

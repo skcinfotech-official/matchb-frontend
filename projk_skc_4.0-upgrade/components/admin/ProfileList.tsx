@@ -157,8 +157,19 @@ export default function ProfileList({
                             </span>
                           </div>
                         )}
+
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <Key className="h-3 w-3" />
+                          <span>
+                            Password changed:{" "}
+                            <span className="font-semibold text-gray-900">
+                              {profile.password_change_count ?? 0}
+                            </span>{" "}
+                            {profile.password_change_count === 1 ? "time" : "times"}
+                          </span>
+                        </div>
                       </div>
-                      
+
                       {/* Profile Details - Only show if profile is complete */}
                       {!isIncomplete && (
                         <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-2">
@@ -334,6 +345,14 @@ export default function ProfileList({
                             </code>
                           </span>
                         )}
+                        <span className="flex items-center gap-1">
+                          <Key className="h-3 w-3" />
+                          Password changed:&nbsp;
+                          <span className="font-semibold text-gray-900">
+                            {profile.password_change_count ?? 0}
+                          </span>
+                          &nbsp;{profile.password_change_count === 1 ? "time" : "times"}
+                        </span>
                       </div>
                       
                       {/* Profile Details - Only for complete profiles */}

@@ -314,7 +314,7 @@ export default function CreateProfilePage() {
                         type="button"
                         onClick={handleUploadClick}
                         disabled={uploadingPhoto}
-                        className="bg-blue-600 hover:bg-blue-700 text-white text-sm"
+                        className="bg-rose-600 hover:bg-rose-700 text-white text-sm"
                       >
                         {uploadingPhoto ? (
                           <>
@@ -436,7 +436,228 @@ export default function CreateProfilePage() {
                   )}
                 </div>
 
-                {/* Add all other fields similarly... */}
+                {/* Religion */}
+                <div>
+                  <Label>Religion *</Label>
+                  <Select value={formData.religion} onValueChange={(v) => handleInputChange("religion", v)}>
+                    <SelectTrigger className={validationErrors.religion ? "border-red-500" : ""}>
+                      <SelectValue placeholder="Select Religion" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Hindu">Hindu</SelectItem>
+                      <SelectItem value="Muslim">Muslim</SelectItem>
+                      <SelectItem value="Christian">Christian</SelectItem>
+                      <SelectItem value="Sikh">Sikh</SelectItem>
+                      <SelectItem value="Buddhist">Buddhist</SelectItem>
+                      <SelectItem value="Jain">Jain</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {validationErrors.religion && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.religion}
+                    </p>
+                  )}
+                </div>
+
+                {/* Caste */}
+                <div>
+                  <Label>Caste *</Label>
+                  <Input
+                    value={formData.caste}
+                    onChange={(e) => handleInputChange("caste", e.target.value)}
+                    placeholder="Enter caste"
+                    className={validationErrors.caste ? "border-red-500" : ""}
+                  />
+                  {validationErrors.caste && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.caste}
+                    </p>
+                  )}
+                </div>
+
+                {/* Mother Tongue */}
+                <div>
+                  <Label>Mother Tongue</Label>
+                  <Input
+                    value={formData.mother_tongue}
+                    onChange={(e) => handleInputChange("mother_tongue", e.target.value)}
+                    placeholder="e.g. Hindi, Bengali"
+                  />
+                </div>
+
+                {/* Education */}
+                <div>
+                  <Label>Education *</Label>
+                  <Input
+                    value={formData.education}
+                    onChange={(e) => handleInputChange("education", e.target.value)}
+                    placeholder="e.g. B.Tech, MBA"
+                    className={validationErrors.education ? "border-red-500" : ""}
+                  />
+                  {validationErrors.education && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.education}
+                    </p>
+                  )}
+                </div>
+
+                {/* Occupation */}
+                <div>
+                  <Label>Occupation *</Label>
+                  <Input
+                    value={formData.occupation}
+                    onChange={(e) => handleInputChange("occupation", e.target.value)}
+                    placeholder="e.g. Software Engineer"
+                    className={validationErrors.occupation ? "border-red-500" : ""}
+                  />
+                  {validationErrors.occupation && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.occupation}
+                    </p>
+                  )}
+                </div>
+
+                {/* Income */}
+                <div>
+                  <Label>Annual Income (LPA)</Label>
+                  <Input
+                    value={formData.income}
+                    onChange={(e) => handleInputChange("income", e.target.value)}
+                    placeholder="e.g. 5, 5.5, 5-10"
+                    className={validationErrors.income ? "border-red-500" : ""}
+                  />
+                  {validationErrors.income && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.income}
+                    </p>
+                  )}
+                </div>
+
+                {/* State */}
+                <div>
+                  <Label>State *</Label>
+                  <Input
+                    value={formData.state}
+                    onChange={(e) => handleInputChange("state", e.target.value)}
+                    placeholder="Enter state"
+                    className={validationErrors.state ? "border-red-500" : ""}
+                  />
+                  {validationErrors.state && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.state}
+                    </p>
+                  )}
+                </div>
+
+                {/* City */}
+                <div>
+                  <Label>City *</Label>
+                  <Input
+                    value={formData.city}
+                    onChange={(e) => handleInputChange("city", e.target.value)}
+                    placeholder="Enter city"
+                    className={validationErrors.city ? "border-red-500" : ""}
+                  />
+                  {validationErrors.city && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.city}
+                    </p>
+                  )}
+                </div>
+
+                {/* Height */}
+                <div>
+                  <Label>Height (ft)</Label>
+                  <Input
+                    value={formData.height}
+                    onChange={(e) => handleInputChange("height", e.target.value)}
+                    placeholder="e.g. 5.6, 6.0"
+                    className={validationErrors.height ? "border-red-500" : ""}
+                  />
+                  {validationErrors.height && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.height}
+                    </p>
+                  )}
+                </div>
+
+                {/* Weight */}
+                <div>
+                  <Label>Weight (kg)</Label>
+                  <Input
+                    value={formData.weight}
+                    onChange={(e) => handleInputChange("weight", e.target.value)}
+                    placeholder="e.g. 65, 65.5"
+                    className={validationErrors.weight ? "border-red-500" : ""}
+                  />
+                  {validationErrors.weight && (
+                    <p className="text-red-500 text-xs mt-1 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.weight}
+                    </p>
+                  )}
+                </div>
+
+                {/* Family Type */}
+                <div>
+                  <Label>Family Type</Label>
+                  <Select value={formData.family_type} onValueChange={(v) => handleInputChange("family_type", v)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select Family Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Nuclear">Nuclear</SelectItem>
+                      <SelectItem value="Joint">Joint</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Family Status */}
+                <div>
+                  <Label>Family Status</Label>
+                  <Select value={formData.family_status} onValueChange={(v) => handleInputChange("family_status", v)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select Family Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Middle Class">Middle Class</SelectItem>
+                      <SelectItem value="Upper Middle Class">Upper Middle Class</SelectItem>
+                      <SelectItem value="Rich">Rich</SelectItem>
+                      <SelectItem value="Affluent">Affluent</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* About Me */}
+                <div className="md:col-span-3">
+                  <Label>About Me</Label>
+                  <Textarea
+                    value={formData.about_me}
+                    onChange={(e) => handleInputChange("about_me", e.target.value)}
+                    placeholder="Tell us about yourself"
+                    rows={3}
+                  />
+                </div>
+
+                {/* Partner Preferences */}
+                <div className="md:col-span-3">
+                  <Label>Partner Preferences</Label>
+                  <Textarea
+                    value={formData.partner_preferences}
+                    onChange={(e) => handleInputChange("partner_preferences", e.target.value)}
+                    placeholder="Describe your ideal partner"
+                    rows={3}
+                  />
+                </div>
               </div>
 
               <Button
@@ -450,7 +671,7 @@ export default function CreateProfilePage() {
               {success && (
                 <Button
                   type="button"
-                  className="w-full h-11 bg-blue-600 hover:bg-blue-700 mt-2"
+                  className="w-full h-11 bg-rose-600 hover:bg-rose-700 mt-2"
                   onClick={handleGoToDashboard}
                 >
                   Go to Dashboard Now

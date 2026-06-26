@@ -27,6 +27,8 @@ export interface UserProfile {
   created_at: string
   updated_at?: string
   recovery_password?: string | null;
+  password_change_count?: number;
+  user_created_at?: string;
 }
 
 export interface Payment {

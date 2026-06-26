@@ -45,7 +45,7 @@ export default function PlansModal({ open, onOpenChange, plans, loadingPlans, on
         <div className="flex-1 overflow-y-auto">
           {loadingPlans ? (
             <div className="flex flex-col items-center justify-center py-16">
-              <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-600 border-t-transparent mb-3"></div>
+              <div className="animate-spin rounded-full h-10 w-10 border-4 border-rose-600 border-t-transparent mb-3"></div>
               <p className="text-gray-600 text-sm">Loading plans...</p>
             </div>
           ) : (
@@ -71,7 +71,7 @@ function PlansContent({ plans, onSelectPlan }: { plans: Plan[]; onSelectPlan: (p
           onClick={() => setActiveTab("normal")}
           className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-md transition-colors ${
             activeTab === "normal"
-              ? "bg-white text-blue-600 shadow-sm"
+              ? "bg-white text-rose-600 shadow-sm"
               : "text-gray-600 hover:text-gray-900"
           }`}
         >
@@ -126,10 +126,10 @@ function PlanCard({ plan, onSelect, type }: { plan: Plan; onSelect: (plan: Plan)
       {/* Header */}
       <div className="p-4 text-center border-b bg-gray-50">
         <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 ${
-          type === "premium" ? "bg-blue-100" : "bg-green-100"
+          type === "premium" ? "bg-rose-100" : "bg-green-100"
         }`}>
           {type === "premium" ? (
-            <Crown className={`h-6 w-6 ${type === "premium" ? "text-blue-600" : "text-green-600"}`} />
+            <Crown className={`h-6 w-6 ${type === "premium" ? "text-rose-600" : "text-green-600"}`} />
           ) : (
             <PhoneCall className="h-6 w-6 text-green-600" />
           )}
@@ -138,7 +138,7 @@ function PlanCard({ plan, onSelect, type }: { plan: Plan; onSelect: (plan: Plan)
           {plan.name}
         </h3>
         <div className={`text-2xl font-bold mb-1 ${
-          type === "premium" ? "text-blue-600" : "text-green-600"
+          type === "premium" ? "text-rose-600" : "text-green-600"
         }`}>
           ₹{plan.price}
         </div>
@@ -175,7 +175,7 @@ function PlanCard({ plan, onSelect, type }: { plan: Plan; onSelect: (plan: Plan)
           onClick={() => onSelect(plan)}
           className={`w-full py-2.5 px-3 rounded-lg text-white font-semibold transition-colors text-sm ${
             type === "premium"
-              ? "bg-blue-600 hover:bg-blue-700"
+              ? "bg-rose-600 hover:bg-rose-700"
               : "bg-green-600 hover:bg-green-700"
           }`}
         >

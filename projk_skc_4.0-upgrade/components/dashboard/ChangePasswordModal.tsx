@@ -40,7 +40,7 @@ export default function ChangePasswordModal({
       <DialogContent className="max-w-md p-6">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-center flex items-center justify-center">
-            <Lock className="h-5 w-5 mr-2 text-blue-500" />
+            <Lock className="h-5 w-5 mr-2 text-rose-500" />
             Change Password
           </DialogTitle>
         </DialogHeader>
@@ -109,7 +109,7 @@ export default function ChangePasswordModal({
             <Button
               type="submit"
               disabled={changingPassword}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              className="w-full bg-rose-600 hover:bg-rose-700 text-white"
             >
               {changingPassword ? (
                 <>

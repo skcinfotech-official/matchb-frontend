@@ -107,9 +107,9 @@ export default function PaymentSubmitPage() {
 
   if (loading || loadingPlans) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading...</p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function PaymentSubmitPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
           <Card className="text-center shadow-lg">
             <CardContent className="pt-8 pb-8">
@@ -132,12 +132,12 @@ export default function PaymentSubmitPage() {
                 Your payment has been submitted for verification. We'll notify you once it's approved.
               </p>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 mb-6">
                 <div className="flex items-start space-x-3">
-                  <Info className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <Info className="h-5 w-5 text-rose-600 mt-0.5" />
                   <div className="text-left">
-                    <p className="text-sm font-medium text-blue-900">What's Next?</p>
-                    <p className="text-sm text-blue-700">
+                    <p className="text-sm font-medium text-rose-900">What's Next?</p>
+                    <p className="text-sm text-rose-700">
                       Our team will verify your payment within 24-48 hours. You'll receive an email confirmation once approved.
                     </p>
                   </div>
@@ -149,7 +149,7 @@ export default function PaymentSubmitPage() {
               </p>
               <Button
                 onClick={() => router.push("/dashboard")}
-                className="w-full bg-blue-600 hover:bg-blue-700"
+                className="w-full bg-rose-600 hover:bg-rose-700"
               >
                 Go to Dashboard
               </Button>
@@ -161,7 +161,7 @@ export default function PaymentSubmitPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100">
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -184,8 +184,8 @@ export default function PaymentSubmitPage() {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <div className="flex items-center space-x-3 mb-2">
-                <div className="p-2 bg-blue-50 rounded-lg">
-                  <CreditCard className="h-6 w-6 text-blue-600" />
+                <div className="p-2 bg-rose-50 rounded-lg">
+                  <CreditCard className="h-6 w-6 text-rose-600" />
                 </div>
                 <h1 className="text-2xl font-bold text-gray-900">Submit Payment</h1>
               </div>
@@ -230,19 +230,19 @@ export default function PaymentSubmitPage() {
 
                   {/* Selected Plan Summary */}
                   {selectedPlan && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-rose-50 border border-rose-200 rounded-lg p-4">
                       <div className="flex items-start justify-between">
                         <div>
-                          <h3 className="font-semibold text-blue-900 mb-1">{selectedPlan.name}</h3>
-                          <p className="text-sm text-blue-700 mb-2">{selectedPlan.description}</p>
-                          <div className="text-sm text-blue-600">
+                          <h3 className="font-semibold text-rose-900 mb-1">{selectedPlan.name}</h3>
+                          <p className="text-sm text-rose-700 mb-2">{selectedPlan.description}</p>
+                          <div className="text-sm text-rose-600">
                             <p><span className="font-medium">Price:</span> ₹{selectedPlan.price}</p>
                             <p><span className="font-medium">Duration:</span> {selectedPlan.duration_months} month(s)</p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-bold text-blue-900">₹{selectedPlan.price}</div>
-                          <div className="text-sm text-blue-600">{selectedPlan.duration_months} month(s)</div>
+                          <div className="text-2xl font-bold text-rose-900">₹{selectedPlan.price}</div>
+                          <div className="text-sm text-rose-600">{selectedPlan.duration_months} month(s)</div>
                         </div>
                       </div>
                     </div>
@@ -286,7 +286,7 @@ export default function PaymentSubmitPage() {
 
                   <Button
                     type="submit"
-                    className="w-full h-12 bg-blue-600 hover:bg-blue-700 font-medium"
+                    className="w-full h-12 bg-rose-600 hover:bg-rose-700 font-medium"
                     disabled={submitting}
                   >
                     {submitting ? (
@@ -313,28 +313,28 @@ export default function PaymentSubmitPage() {
             <Card className="shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base flex items-center">
-                  <Info className="h-5 w-5 text-blue-600 mr-2" />
+                  <Info className="h-5 w-5 text-rose-600 mr-2" />
                   Verification Process
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-medium">1</div>
+                    <div className="flex-shrink-0 w-6 h-6 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-xs font-medium">1</div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Submit Details</p>
                       <p className="text-xs text-gray-500">Provide transaction ID and screenshot</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-medium">2</div>
+                    <div className="flex-shrink-0 w-6 h-6 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-xs font-medium">2</div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Verification</p>
                       <p className="text-xs text-gray-500">Our team verifies your payment (24-48 hrs)</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-medium">3</div>
+                    <div className="flex-shrink-0 w-6 h-6 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-xs font-medium">3</div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Activation</p>
                       <p className="text-xs text-gray-500">Your plan gets activated automatically</p>

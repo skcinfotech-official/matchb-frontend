@@ -22,18 +22,18 @@ export default function PaymentModal({ open, onOpenChange, selectedPlan, onPayme
       <DialogContent className="max-w-md p-6">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-center flex items-center justify-center">
-            <CreditCard className="h-5 w-5 mr-2 text-blue-500" />
+            <CreditCard className="h-5 w-5 mr-2 text-rose-500" />
             Complete Payment
           </DialogTitle>
         </DialogHeader>
         {selectedPlan && (
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-rose-50 rounded-lg p-4 border border-rose-200">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-semibold text-gray-900">{selectedPlan.name}</h3>
-                <Badge className="bg-blue-100 text-blue-700">{selectedPlan.type === "call" ? "Call Plan" : "Premium"}</Badge>
+                <Badge className="bg-rose-100 text-rose-700">{selectedPlan.type === "call" ? "Call Plan" : "Premium"}</Badge>
               </div>
-              <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <p className="text-2xl font-bold text-rose-600">
                 ₹{selectedPlan.price}
               </p>
               <p className="text-sm text-gray-600">
@@ -56,16 +56,16 @@ export default function PaymentModal({ open, onOpenChange, selectedPlan, onPayme
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex justify-between items-center p-3 bg-rose-50 rounded-lg border border-rose-200">
                 <div>
-                  <p className="font-medium text-sm text-blue-900">UPI ID</p>
-                  <p className="text-sm text-blue-700 font-mono">msmbinfotech1@sbi</p>
+                  <p className="font-medium text-sm text-rose-900">UPI ID</p>
+                  <p className="text-sm text-rose-700 font-mono">msmbinfotech1@sbi</p>
                 </div>
                  <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => copyToClipboard("msmbinfotech1@sbi")}
-                  className="text-blue-600 hover:text-blue-700 hover:bg-blue-100"
+                  className="text-rose-600 hover:text-rose-700 hover:bg-rose-100"
                 >
                   <Copy className="h-4 w-4" />
                 </Button>
@@ -86,7 +86,7 @@ export default function PaymentModal({ open, onOpenChange, selectedPlan, onPayme
               </div>
             </div>
             <Button
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="w-full bg-rose-600 hover:bg-rose-700"
               onClick={onPaymentComplete}
             >
               <Check className="h-4 w-4 mr-2" />

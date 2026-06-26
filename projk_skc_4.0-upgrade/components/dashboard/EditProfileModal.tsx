@@ -131,7 +131,7 @@ export default function EditProfileModal({
       <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto p-6">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-center flex items-center justify-center">
-            <Edit className="h-5 w-5 mr-2 text-blue-500" />
+            <Edit className="h-5 w-5 mr-2 text-rose-500" />
             Edit Profile
           </DialogTitle>
         </DialogHeader>
@@ -171,7 +171,7 @@ export default function EditProfileModal({
                   type="button"
                   onClick={handleUploadClick}
                   disabled={editingProfile || uploadingPhoto}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="bg-rose-600 hover:bg-rose-700 text-white"
                 >
                   {uploadingPhoto ? (
                     <>
@@ -467,7 +467,7 @@ export default function EditProfileModal({
               id="about_me"
               value={editFormData.about_me}
               onChange={(e) => setEditFormData({ ...editFormData, about_me: e.target.value })}
-              className="mt-1 w-full h-24 text-sm border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 w-full h-24 text-sm border-gray-300 rounded-md p-2 focus:ring-rose-500 focus:border-rose-500"
               placeholder="Tell us about yourself"
               disabled={editingProfile}
             />
@@ -481,7 +481,7 @@ export default function EditProfileModal({
               id="partner_preferences"
               value={editFormData.partner_preferences}
               onChange={(e) => setEditFormData({ ...editFormData, partner_preferences: e.target.value })}
-              className="mt-1 w-full h-24 text-sm border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 w-full h-24 text-sm border-gray-300 rounded-md p-2 focus:ring-rose-500 focus:border-rose-500"
               placeholder="Describe your ideal partner"
               disabled={editingProfile}
             />
@@ -506,7 +506,7 @@ export default function EditProfileModal({
             <Button
               type="submit"
               disabled={editingProfile || uploadingPhoto}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              className="w-full bg-rose-600 hover:bg-rose-700 text-white"
             >
               {editingProfile ? (
                 <>

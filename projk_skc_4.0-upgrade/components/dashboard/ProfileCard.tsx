@@ -45,17 +45,17 @@ export default function ProfileCard({
   };
 
   return (
-    <Card className="border-0 shadow-lg bg-white/95 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+    <Card className="border border-rose-100 shadow-sm hover:shadow-md transition-shadow">
       <CardContent className="p-5">
         <div className="text-center mb-5">
           <div className="relative inline-block">
-            <Avatar className="h-20 w-20 mx-auto mb-3 ring-4 ring-blue-100 shadow-lg">
+            <Avatar className="h-20 w-20 mx-auto mb-3 ring-4 ring-rose-100 shadow-lg">
               <AvatarImage
                 src={getImageUrl(userProfile?.profile_photo)}
                 className="object-cover"
                 key={userProfile?.profile_photo || 'default'}
               />
-              <AvatarFallback className="text-lg bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600 font-semibold">
+              <AvatarFallback className="text-lg bg-rose-100 text-rose-600 font-semibold">
                 {userProfile?.name?.charAt(0) || "U"}
               </AvatarFallback>
             </Avatar>
@@ -77,7 +77,7 @@ export default function ProfileCard({
             {userProfile?.age && (
               <p className="text-sm text-gray-600">{userProfile.age} years old</p>
             )}
-            <Badge variant="outline" className={`text-xs border-blue-200 ${
+            <Badge variant="outline" className={`text-xs border-rose-200 ${
               isProfileComplete
                 ? 'bg-green-50 text-green-600 border-green-200'
                 : 'bg-orange-50 text-orange-600 border-orange-200'
@@ -91,13 +91,13 @@ export default function ProfileCard({
         {profileExists && userProfile ? (
           <div className="space-y-3 mb-5">
             <div className="flex items-center text-sm text-gray-700 bg-gray-50 rounded-lg p-3">
-              <MapPin className="h-4 w-4 mr-3 text-blue-500 flex-shrink-0" />
+              <MapPin className="h-4 w-4 mr-3 text-rose-500 flex-shrink-0" />
               <span className="truncate font-medium">
                 {userProfile?.city || 'Not specified'}, {userProfile?.state || 'Not specified'}
               </span>
             </div>
             <div className="flex items-center text-sm text-gray-700 bg-gray-50 rounded-lg p-3">
-              <Briefcase className="h-4 w-4 mr-3 text-blue-500 flex-shrink-0" />
+              <Briefcase className="h-4 w-4 mr-3 text-rose-500 flex-shrink-0" />
               <span className="truncate font-medium">{userProfile?.occupation || 'Not specified'}</span>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function ProfileCard({
         <div className="grid grid-cols-1 gap-2">
           {!profileExists || !isProfileComplete ? (
             <Button
-              className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-medium transition-all duration-200 h-10 shadow-md hover:shadow-lg"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium h-10"
               onClick={onCompleteProfile}
             >
               <UserPlus className="h-4 w-4 mr-2" />
@@ -123,7 +123,7 @@ export default function ProfileCard({
           ) : (
             <Button
               variant="outline"
-              className="w-full bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border-blue-200 hover:border-blue-300 text-blue-700 font-medium transition-all duration-200 h-10"
+              className="w-full border-rose-200 text-rose-700 hover:bg-rose-50 font-medium h-10"
               onClick={onEditProfile}
             >
               <Edit className="h-4 w-4 mr-2" />
@@ -133,7 +133,7 @@ export default function ProfileCard({
 
           <Button
             variant="outline"
-            className="w-full bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border-purple-200 hover:border-purple-300 text-purple-700 font-medium transition-all duration-200 h-10"
+            className="w-full border-rose-200 text-rose-700 hover:bg-rose-50 font-medium h-10"
             onClick={onChangePassword}
           >
             <Settings className="h-4 w-4 mr-2" />

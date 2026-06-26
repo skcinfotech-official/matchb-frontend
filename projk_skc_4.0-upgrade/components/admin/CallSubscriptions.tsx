@@ -17,6 +17,7 @@ import {
   CheckCircle, XCircle, Eye, Edit, Plus, Minus,
   AlertTriangle, TrendingUp, Clock, Zap, Activity, RefreshCw, Settings, PhoneCall, CreditCard, Users
 } from "lucide-react"
+import { formatDateTime } from "@/utils/formatters"
 
 // Number formatting utility function
 const formatNumber = (num: number): string => {
@@ -305,15 +306,8 @@ export default function CallSubscriptions() {
     }
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  }
+  // Backend timestamps are naive UTC; render in IST with date + time.
+  const formatDate = (dateString: string) => formatDateTime(dateString)
 
   const formatDuration = (minutes: number) => {
     const hours = Math.floor(minutes / 60)

@@ -42,19 +42,19 @@ export default function ProfileDetailsModal({
         {selectedMatch && (
           <div className="space-y-3 sm:space-y-4">
             {/* Top Section - responsive header */}
-            <div className="relative bg-blue-500 rounded-lg p-3 sm:p-4 text-white">
+            <div className="relative bg-rose-500 rounded-lg p-3 sm:p-4 text-white">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 {/* Avatar + Info */}
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Avatar className="h-12 w-12 sm:h-14 sm:w-14 border-2 border-white shadow-md flex-shrink-0">
                     <AvatarImage src={selectedMatch.profile_photo || "/placeholder.svg"} />
-                    <AvatarFallback className="text-sm sm:text-lg font-bold text-blue-500 bg-white">
+                    <AvatarFallback className="text-sm sm:text-lg font-bold text-rose-500 bg-white">
                       {selectedMatch.name.charAt(0)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0 flex-1">
                     <h2 className="text-base sm:text-lg font-bold truncate">{selectedMatch.name}</h2>
-                    <p className="text-xs text-blue-100">
+                    <p className="text-xs text-rose-100">
                       {selectedMatch.age} yrs • {selectedMatch.city}, {selectedMatch.state}
                     </p>
                     <div className="flex flex-wrap gap-1 mt-1">
@@ -80,7 +80,7 @@ export default function ProfileDetailsModal({
                     <PhoneCall className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
                     {activePlans.call_plan?.isActive ? "Call" : "Lock"}
                   </Button>
-                  <Button className="text-[10px] sm:text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 sm:px-3 h-6 sm:h-7">
+                  <Button className="text-[10px] sm:text-xs bg-rose-600 hover:bg-rose-700 text-white px-2 sm:px-3 h-6 sm:h-7">
                     <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
                     Chat
                   </Button>
@@ -98,9 +98,9 @@ export default function ProfileDetailsModal({
             {/* Details Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {/* Personal Card */}
-              <Card className="border-0 shadow-sm bg-blue-50">
+              <Card className="border-0 shadow-sm bg-rose-50">
                 <CardContent className="p-2 sm:p-3">
-                  <h4 className="text-[10px] sm:text-xs font-semibold text-blue-700 mb-1 flex items-center">
+                  <h4 className="text-[10px] sm:text-xs font-semibold text-rose-700 mb-1 flex items-center">
                     <User className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-1" /> Personal
                   </h4>
                   <div className="space-y-0.5 sm:space-y-1">
@@ -126,9 +126,9 @@ export default function ProfileDetailsModal({
               </Card>
 
               {/* Family */}
-              <Card className="border-0 shadow-sm bg-purple-50">
+              <Card className="border-0 shadow-sm bg-pink-50">
                 <CardContent className="p-2 sm:p-3">
-                  <h4 className="text-[10px] sm:text-xs font-semibold text-purple-700 mb-1 flex items-center">
+                  <h4 className="text-[10px] sm:text-xs font-semibold text-pink-700 mb-1 flex items-center">
                     <Home className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-1" /> Family
                   </h4>
                   <div className="space-y-0.5 sm:space-y-1">

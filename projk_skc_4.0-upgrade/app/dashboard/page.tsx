@@ -25,11 +25,11 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { UserProfile, Plan, ActivePlan, CallLog, SearchFilters } from "../../types/types";
-import { formatDate } from "@/utils/formatters";
+import { formatDate, formatDateTime } from "@/utils/formatters";
 import toast, { Toaster } from "react-hot-toast";
-import { Phone, RefreshCw, Clock, User as UserIcon, Play } from "lucide-react";
+import { Phone, RefreshCw, Clock, User as UserIcon, Play, Zap } from "lucide-react";
 
 export default function Dashboard() {
   const { user, logout, loading } = useAuth();
@@ -546,9 +546,9 @@ export default function Dashboard() {
 
   if (loading || loadingProfile) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-600 mx-auto mb-4"></div>
           <p className="text-gray-600 font-medium">Loading your dashboard...</p>
         </div>
       </div>
@@ -556,7 +556,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50">
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -587,6 +587,12 @@ export default function Dashboard() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4 lg:py-6">
+        <div className="mb-5 lg:mb-6">
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
+            Welcome back, <span className="text-rose-600">{user?.name?.split(" ")[0] || "there"}</span>
+          </h1>
+          <p className="text-gray-600 mt-1">Manage your profile, plans, and discover your matches.</p>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
           <div className="lg:col-span-1 space-y-4">
             <ProfileCard
@@ -604,37 +610,48 @@ export default function Dashboard() {
               }}
               formatDate={formatDate}
             />
-            <QuickActions
-              onViewPlans={() => {
-                fetchPlans();
-                setShowPlansModal(true);
-              }}
-            />
-
-            {/* Call Logs Dialog */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    fetchCallLogs();
+            {/* Quick Actions */}
+            <Card className="border border-rose-100 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
+                  <div className="h-8 w-8 bg-rose-600 rounded-lg flex items-center justify-center mr-3">
+                    <Zap className="h-4 w-4 text-white" />
+                  </div>
+                  Quick Actions
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <QuickActions
+                  onViewPlans={() => {
+                    fetchPlans();
+                    setShowPlansModal(true);
                   }}
-                  className="w-full bg-white/90 border-slate-200 hover:bg-slate-50 text-slate-700 shadow-sm"
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Logs
-                </Button>
-              </DialogTrigger>
+                />
+
+                {/* Call Logs Dialog */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        fetchCallLogs();
+                      }}
+                      className="w-full border-rose-200 text-rose-700 hover:bg-rose-50"
+                    >
+                      <Phone className="h-4 w-4 mr-2" />
+                      Call Logs
+                    </Button>
+                  </DialogTrigger>
               <DialogContent className="max-h-[80vh] overflow-y-auto sm:max-w-lg">
                 <DialogHeader>
                   <DialogTitle className="flex items-center">
-                    <Phone className="h-5 w-5 mr-2 text-blue-500" />
+                    <Phone className="h-5 w-5 mr-2 text-rose-500" />
                     Call History
                   </DialogTitle>
                 </DialogHeader>
                 {loadingCallLogs ? (
                   <div className="flex justify-center py-8">
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-rose-600"></div>
                   </div>
                 ) : callLogs.length === 0 ? (
                   <div className="text-center py-8">
@@ -664,7 +681,7 @@ export default function Dashboard() {
                             <div className="flex items-center space-x-3 text-sm text-gray-500">
                               <span className={`px-2 py-1 rounded text-xs ${log.call_type === 'outgoing'
                                   ? 'bg-green-100 text-green-700'
-                                  : 'bg-blue-100 text-blue-700'
+                                  : 'bg-rose-100 text-rose-700'
                                 }`}>
                                 {log.call_type}
                               </span>
@@ -674,7 +691,7 @@ export default function Dashboard() {
                               </span>
                             </div>
                             <p className="text-xs text-gray-400 mt-1">
-                              {formatDate(log.created_at)}
+                              {formatDateTime(log.created_at)}
                             </p>
                           </div>
                           {log.recording_url && (
@@ -682,7 +699,7 @@ export default function Dashboard() {
                               variant="ghost"
                               size="sm"
                               asChild
-                              className="text-blue-600 hover:text-blue-700"
+                              className="text-rose-600 hover:text-rose-700"
                             >
                               <a
                                 href={log.recording_url}
@@ -713,12 +730,14 @@ export default function Dashboard() {
                   </DialogClose>
                 </div>
               </DialogContent>
-            </Dialog>
+                </Dialog>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="lg:col-span-3">
             {!profileExists || !userProfile ? (
-              <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+              <div className="bg-white rounded-xl border border-rose-100 shadow-sm p-6 text-center">
                 <div className="text-gray-500 mb-4">
                   <svg className="h-16 w-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

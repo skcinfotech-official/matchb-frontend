@@ -13,6 +13,7 @@ import {
   PhoneCall, PhoneIncoming, PhoneOutgoing, Clock, ChevronLeft, ChevronRight,
   Eye, User, Calendar, Phone, CreditCard, Activity, RefreshCw, Search
 } from "lucide-react"
+import { formatDateTime } from "@/utils/formatters"
 
 interface CallLog {
   session_id: number
@@ -139,19 +140,14 @@ export default function UserCallLogs() {
   }
 
   const formatDate = (dateString: string | null, fallbackDate: string | null) => {
-    const date = dateString && !isNaN(new Date(dateString).getTime())
-      ? new Date(dateString)
+    const value = dateString && !isNaN(new Date(dateString).getTime())
+      ? dateString
       : (fallbackDate && !isNaN(new Date(fallbackDate).getTime())
-          ? new Date(fallbackDate)
+          ? fallbackDate
           : null)
-    if (!date) return "N/A"
-    return date.toLocaleDateString("en-IN", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    })
+    if (!value) return "N/A"
+    // Backend timestamps are naive UTC; render in IST with date + time.
+    return formatDateTime(value)
   }
 
   const formatDuration = (seconds: number) => {

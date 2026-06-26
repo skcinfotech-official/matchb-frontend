@@ -148,7 +148,7 @@ export default function CallInterface() {
       case 'in_progress':
         return "bg-green-500"
       case 'completed':
-        return "bg-blue-500"
+        return "bg-rose-500"
       case 'busy':
       case 'no-answer':
       case 'failed':
@@ -160,7 +160,7 @@ export default function CallInterface() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-rose-900 to-pink-900 flex items-center justify-center">
         <div className="text-center text-white">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
           <p>Loading call...</p>
@@ -192,7 +192,7 @@ export default function CallInterface() {
   const isCallEnded = ['completed', 'busy', 'no-answer', 'failed'].includes(session.status)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-rose-900 to-pink-900 flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-white/10 backdrop-blur-md border-white/20 text-white">
         <CardContent className="p-8">
           {/* Call Status Header */}
@@ -266,7 +266,7 @@ export default function CallInterface() {
                 size="lg"
                 className={`rounded-full w-14 h-14 p-0 ${
                   isSpeakerOn 
-                    ? 'bg-blue-500 hover:bg-blue-600' 
+                    ? 'bg-rose-500 hover:bg-rose-600' 
                     : 'bg-white/20 hover:bg-white/30'
                 } backdrop-blur-sm border border-white/30`}
               >
@@ -307,7 +307,7 @@ export default function CallInterface() {
                       // Implement message functionality
                       console.log('Send message to', otherUser.name)
                     }}
-                    className="flex-1 bg-blue-500 hover:bg-blue-600"
+                    className="flex-1 bg-rose-500 hover:bg-rose-600"
                   >
                     <MessageCircle className="h-4 w-4 mr-2" />
                     Message
