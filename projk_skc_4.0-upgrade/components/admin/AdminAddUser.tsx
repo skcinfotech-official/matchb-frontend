@@ -80,6 +80,9 @@ export default function AdminAddUser({ onUserAdded }: AdminAddUserProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const fileInputRef = useRef<HTMLInputElement>(null)
+  // Guards against a second submit landing before `isLoading` has re-rendered the
+  // disabled button (double click / Enter + click), which would create the user twice.
+  const isSubmittingRef = useRef(false)
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -187,10 +190,14 @@ export default function AdminAddUser({ onUserAdded }: AdminAddUserProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isSubmittingRef.current) return
+
     setMessage(null)
 
     if (!validateForm()) return
 
+    isSubmittingRef.current = true
     setIsLoading(true)
 
     try {
@@ -268,6 +275,7 @@ export default function AdminAddUser({ onUserAdded }: AdminAddUserProps) {
     } catch (error) {
       setMessage({ type: 'error', text: 'Network error. Please try again.' })
     } finally {
+      isSubmittingRef.current = false
       setIsLoading(false)
     }
   }
