@@ -75,10 +75,27 @@ interface CreditDistribution {
   status: 'active' | 'expired' | 'suspended'
 }
 
+// Live wallet balance straight from the Exotel account.
+interface LiveBalance {
+  available: boolean
+  amount?: number | null
+  currency?: string
+  error?: string
+}
+
+// Actual money Exotel charged for calls (real per-call Price), separate from
+// the internal credit accounting.
+interface ActualSpend {
+  total: number
+  current_month: number
+}
+
 export default function CallSubscriptions() {
   const [activeTab, setActiveTab] = useState("subscriptions")
   const [callSubscriptions, setCallSubscriptions] = useState<CallSubscription[]>([])
   const [exotelCredit, setExotelCredit] = useState<ExotelCredit | null>(null)
+  const [liveBalance, setLiveBalance] = useState<LiveBalance | null>(null)
+  const [actualSpend, setActualSpend] = useState<ActualSpend | null>(null)
   const [creditDistributions, setCreditDistributions] = useState<CreditDistribution[]>([])
   const [loadingSubscriptions, setLoadingSubscriptions] = useState(true)
   const [loadingExotelCredit, setLoadingExotelCredit] = useState(true)
@@ -176,6 +193,8 @@ export default function CallSubscriptions() {
       if (response.ok) {
         const data = await response.json()
         setExotelCredit(data.credits)
+        setLiveBalance(data.live_balance ?? null)
+        setActualSpend(data.actual_spend ?? null)
       } else {
         throw new Error("Failed to fetch Exotel credits")
       }
@@ -350,25 +369,88 @@ export default function CallSubscriptions() {
               Manage subscriptions, payments, and Call credits
             </p>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-gray-300 hover:bg-gray-50"
-            onClick={() => {
-              if (exotelCredit) {
-                setExotelDialog({
-                  open: true,
-                  newLimit: exotelCredit.total_credits.toString(),
-                  costPerMinute: exotelCredit.cost_per_minute.toString(),
-                  monthlyLimit: exotelCredit.monthly_limit.toString()
-                })
-              }
-            }}
-          >
-            <Settings className="h-4 w-4 mr-2" />
-            Settings
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-gray-300 hover:bg-gray-50"
+              onClick={() => fetchExotelCredit()}
+              disabled={loadingExotelCredit}
+            >
+              <RefreshCw className={`h-4 w-4 mr-2 ${loadingExotelCredit ? "animate-spin" : ""}`} />
+              Refresh
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-gray-300 hover:bg-gray-50"
+              onClick={() => {
+                if (exotelCredit) {
+                  setExotelDialog({
+                    open: true,
+                    newLimit: exotelCredit.total_credits.toString(),
+                    costPerMinute: exotelCredit.cost_per_minute.toString(),
+                    monthlyLimit: exotelCredit.monthly_limit.toString()
+                  })
+                }
+              }}
+            >
+              <Settings className="h-4 w-4 mr-2" />
+              Settings
+            </Button>
+          </div>
         </div>
+
+        {/* Live Exotel Wallet Balance - real-time, straight from the Exotel account */}
+        {!loadingExotelCredit && (
+          <Card className="border-rose-200 bg-gradient-to-r from-rose-50 to-pink-50">
+            <CardContent className="p-4 sm:p-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-11 w-11 rounded-lg bg-rose-600 flex items-center justify-center flex-shrink-0">
+                    <CreditCard className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-gray-600">Live Exotel Wallet Balance</span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-rose-700 bg-rose-100 px-1.5 py-0.5 rounded-full">
+                        <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse" />
+                        REAL-TIME
+                      </span>
+                    </div>
+                    {liveBalance?.available ? (
+                      <div className="text-2xl sm:text-3xl font-bold text-gray-900 mt-0.5">
+                        {liveBalance.amount !== null && liveBalance.amount !== undefined
+                          ? `${liveBalance.currency === "INR" || !liveBalance.currency ? "₹" : `${liveBalance.currency} `}${liveBalance.amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                          : "Fetched (amount format unknown — check API response)"}
+                      </div>
+                    ) : (
+                      <div className="text-sm text-red-600 mt-1">
+                        {liveBalance?.error || "Could not reach Exotel account"}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                {actualSpend && (
+                  <div className="flex gap-6 sm:pl-4 sm:border-l border-rose-200">
+                    <div>
+                      <div className="text-xs text-gray-500">Actual spend (total)</div>
+                      <div className="text-lg font-semibold text-gray-900">
+                        ₹{actualSpend.total.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-500">This month</div>
+                      <div className="text-lg font-semibold text-gray-900">
+                        ₹{actualSpend.current_month.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Stats Cards - Compact Grid */}
         {loadingExotelCredit ? (
