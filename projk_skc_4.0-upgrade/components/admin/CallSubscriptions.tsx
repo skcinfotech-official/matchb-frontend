@@ -412,18 +412,21 @@ export default function CallSubscriptions() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-gray-600">Live Exotel Wallet Balance</span>
+                      <span className="text-sm font-medium text-gray-600">Available Exotel Credit</span>
                       <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-rose-700 bg-rose-100 px-1.5 py-0.5 rounded-full">
                         <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse" />
                         REAL-TIME
                       </span>
                     </div>
                     {liveBalance?.available ? (
-                      <div className="text-2xl sm:text-3xl font-bold text-gray-900 mt-0.5">
-                        {liveBalance.amount !== null && liveBalance.amount !== undefined
-                          ? `${liveBalance.currency === "INR" || !liveBalance.currency ? "₹" : `${liveBalance.currency} `}${liveBalance.amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-                          : "Fetched (amount format unknown — check API response)"}
-                      </div>
+                      <>
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-900 mt-0.5">
+                          {liveBalance.amount !== null && liveBalance.amount !== undefined
+                            ? `${liveBalance.currency === "INR" || !liveBalance.currency ? "₹" : `${liveBalance.currency} `}${liveBalance.amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                            : "Fetched (amount format unknown — check API response)"}
+                        </div>
+                        <div className="text-xs text-gray-500 mt-0.5">Credit balance in your Exotel account</div>
+                      </>
                     ) : (
                       <div className="text-sm text-red-600 mt-1">
                         {liveBalance?.error || "Could not reach Exotel account"}
