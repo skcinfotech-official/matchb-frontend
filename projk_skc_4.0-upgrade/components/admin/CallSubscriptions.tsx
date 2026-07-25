@@ -90,12 +90,22 @@ interface ActualSpend {
   current_month: number
 }
 
+// Usable pool derived from the REAL Exotel wallet balance — the true ceiling for
+// how much calling can actually be funded, plus a low-balance recharge alert.
+interface CreditPool {
+  balance_amount: number
+  fundable_minutes: number | null
+  low_balance: boolean
+  threshold: number
+}
+
 export default function CallSubscriptions() {
   const [activeTab, setActiveTab] = useState("subscriptions")
   const [callSubscriptions, setCallSubscriptions] = useState<CallSubscription[]>([])
   const [exotelCredit, setExotelCredit] = useState<ExotelCredit | null>(null)
   const [liveBalance, setLiveBalance] = useState<LiveBalance | null>(null)
   const [actualSpend, setActualSpend] = useState<ActualSpend | null>(null)
+  const [creditPool, setCreditPool] = useState<CreditPool | null>(null)
   const [creditDistributions, setCreditDistributions] = useState<CreditDistribution[]>([])
   const [loadingSubscriptions, setLoadingSubscriptions] = useState(true)
   const [loadingExotelCredit, setLoadingExotelCredit] = useState(true)
@@ -195,6 +205,7 @@ export default function CallSubscriptions() {
         setExotelCredit(data.credits)
         setLiveBalance(data.live_balance ?? null)
         setActualSpend(data.actual_spend ?? null)
+        setCreditPool(data.pool ?? null)
       } else {
         throw new Error("Failed to fetch Exotel credits")
       }
@@ -401,6 +412,19 @@ export default function CallSubscriptions() {
           </div>
         </div>
 
+        {/* Low-balance alert - the real Exotel wallet is the true funding source,
+            so warn admin to recharge before calls start failing. */}
+        {!loadingExotelCredit && creditPool?.low_balance && (
+          <Alert className="bg-red-50 border-red-300">
+            <AlertTriangle className="h-4 w-4 text-red-600" />
+            <AlertDescription className="text-red-800">
+              <span className="font-semibold">Call credit is low</span> — only ₹
+              {creditPool.balance_amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} left
+              (below the ₹{formatNumber(creditPool.threshold)} threshold). Recharge your call credit soon, otherwise calls will start failing even though users still have credits.
+            </AlertDescription>
+          </Alert>
+        )}
+
         {/* Live Exotel Wallet Balance - real-time, straight from the Exotel account */}
         {!loadingExotelCredit && (
           <Card className="border-rose-200 bg-gradient-to-r from-rose-50 to-pink-50">
@@ -425,11 +449,16 @@ export default function CallSubscriptions() {
                             ? `${liveBalance.currency === "INR" || !liveBalance.currency ? "₹" : `${liveBalance.currency} `}${liveBalance.amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                             : "Fetched (amount format unknown — check API response)"}
                         </div>
-                        <div className="text-xs text-gray-500 mt-0.5">Credit balance in your account</div>
+                        <div className="text-xs text-gray-500 mt-0.5">
+                          Credit balance in your account
+                          {creditPool?.fundable_minutes != null && (
+                            <> · funds ≈ {formatNumber(creditPool.fundable_minutes)} call-minutes</>
+                          )}
+                        </div>
                       </>
                     ) : (
                       <div className="text-sm text-red-600 mt-1">
-                        {liveBalance?.error || "Could not reach Exotel account"}
+                        {liveBalance?.error || "Could not fetch call credit"}
                       </div>
                     )}
                   </div>
@@ -466,11 +495,19 @@ export default function CallSubscriptions() {
             <Card className="border-gray-200 bg-white">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-600">Total Credits</span>
+                  <span className="text-sm font-medium text-gray-600">
+                    {creditPool ? "Fundable Pool" : "Total Credits"}
+                  </span>
                   <Zap className="h-4 w-4 text-gray-400" />
                 </div>
-                <div className="text-2xl font-bold text-gray-900">{formatNumber(exotelCredit.total_credits)}</div>
-                <div className="text-xs text-gray-500 mt-1">Available</div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {creditPool?.fundable_minutes != null
+                    ? formatNumber(creditPool.fundable_minutes)
+                    : formatNumber(exotelCredit.total_credits)}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  {creditPool ? "call-minutes (from real balance)" : "Available"}
+                </div>
               </CardContent>
             </Card>
             <Card className="border-gray-200 bg-white">

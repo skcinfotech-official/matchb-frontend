@@ -13,23 +13,23 @@ interface ProfileViewDialogProps {
 export default function ProfileViewDialog({ viewDialog, setViewDialog }: ProfileViewDialogProps) {
   return (
     <Dialog open={viewDialog.open} onOpenChange={(open) => setViewDialog({ ...viewDialog, open })}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>User Profile Details</DialogTitle>
           <DialogDescription>Complete information for {viewDialog.profile?.name || 'Unknown User'}</DialogDescription>
         </DialogHeader>
         {viewDialog.profile && (
-          <div className="space-y-6">
-            <div className="flex gap-6">
+          <div className="space-y-4">
+            <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <Avatar className="h-24 w-24">
+                <Avatar className="h-16 w-16">
                   <AvatarImage src={viewDialog.profile.profile_photo || "/placeholder.svg"} />
                   <AvatarFallback>{viewDialog.profile.name?.charAt(0) || '?'}</AvatarFallback>
                 </Avatar>
               </div>
-              <div className="flex-1 space-y-4">
+              <div className="flex-1 space-y-3">
                 <div>
-                  <h3 className="text-lg font-medium">{viewDialog.profile.name || 'Unknown User'}</h3>
+                  <h3 className="text-base font-medium">{viewDialog.profile.name || 'Unknown User'}</h3>
                   <Badge
                     variant={
                       viewDialog.profile.status === "approved"
@@ -42,8 +42,8 @@ export default function ProfileViewDialog({ viewDialog, setViewDialog }: Profile
                     {viewDialog.profile.status}
                   </Badge>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1.5">
+                  <div className="space-y-1.5">
                     <div className="flex items-center gap-2 text-sm">
                       <Mail className="h-4 w-4 text-gray-500" />
                       <span>{viewDialog.profile.email}</span>
@@ -61,7 +61,7 @@ export default function ProfileViewDialog({ viewDialog, setViewDialog }: Profile
                       <span>{viewDialog.profile.gender}</span>
                     </div>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <div className="text-sm">
                       <span className="font-medium">Caste: </span>{viewDialog.profile.caste}
                     </div>
@@ -79,9 +79,9 @@ export default function ProfileViewDialog({ viewDialog, setViewDialog }: Profile
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+            <div className="space-y-3 border-t pt-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1.5">
+                <div className="space-y-1.5">
                   {viewDialog.profile.height && (
                     <div className="text-sm">
                       <span className="font-medium">Height: </span>{viewDialog.profile.height}
@@ -104,7 +104,7 @@ export default function ProfileViewDialog({ viewDialog, setViewDialog }: Profile
                     </div>
                   )}
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {viewDialog.profile.mother_tongue && (
                     <div className="text-sm">
                       <span className="font-medium">Mother Tongue: </span>{viewDialog.profile.mother_tongue}
@@ -125,29 +125,29 @@ export default function ProfileViewDialog({ viewDialog, setViewDialog }: Profile
 
               {viewDialog.profile.about_me && (
                 <div>
-                  <h4 className="text-sm font-medium mb-2">About Me</h4>
+                  <h4 className="text-sm font-medium mb-1">About Me</h4>
                   <p className="text-sm text-gray-600">{viewDialog.profile.about_me}</p>
                 </div>
               )}
 
               {viewDialog.profile.partner_preferences && (
                 <div>
-                  <h4 className="text-sm font-medium mb-2">Partner Preferences</h4>
+                  <h4 className="text-sm font-medium mb-1">Partner Preferences</h4>
                   <p className="text-sm text-gray-600">{viewDialog.profile.partner_preferences}</p>
                 </div>
               )}
 
               {viewDialog.profile.status === "rejected" && viewDialog.profile.rejection_reason && (
                 <div>
-                  <h4 className="text-sm font-medium mb-2 text-red-600">Rejection Reason</h4>
+                  <h4 className="text-sm font-medium mb-1 text-red-600">Rejection Reason</h4>
                   <p className="text-sm text-red-600">{viewDialog.profile.rejection_reason}</p>
                 </div>
               )}
 
               {/* New Recovery Password Section */}
               {viewDialog.profile.recovery_password && (
-                <div className="border-t pt-4">
-                  <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
+                <div className="border-t pt-3">
+                  <h4 className="text-sm font-medium mb-1 flex items-center gap-2">
                     <Key className="h-4 w-4 text-gray-500" />
                     Recovery Password (Admin Only)
                   </h4>
