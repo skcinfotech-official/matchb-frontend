@@ -67,31 +67,6 @@ export default function ProfileDetailsModal({
                     </div>
                   </div>
                 </div>
-                {/* Actions - responsive button layout */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-end">
-                  <Button
-                    onClick={() => onInitiateCall(selectedMatch.id, selectedMatch.name)}
-                    className={`text-[10px] sm:text-xs px-2 sm:px-3 h-6 sm:h-7 ${activePlans.call_plan?.isActive
-                        ? "bg-green-600 hover:bg-green-700 text-white"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                      }`}
-                    disabled={!activePlans.call_plan?.isActive || makingCall}
-                  >
-                    <PhoneCall className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
-                    {activePlans.call_plan?.isActive ? "Call" : "Lock"}
-                  </Button>
-                  <Button className="text-[10px] sm:text-xs bg-rose-600 hover:bg-rose-700 text-white px-2 sm:px-3 h-6 sm:h-7">
-                    <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
-                    Chat
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="text-[10px] sm:text-xs border-white/30 text-white bg-white/20 hover:bg-white/30 px-2 sm:px-3 h-6 sm:h-7"
-                  >
-                    <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
-                    <span className="hidden sm:inline">Shortlist</span>
-                  </Button>
-                </div>
               </div>
             </div>
 
